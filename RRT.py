@@ -1,5 +1,6 @@
 from typing import Tuple
 from configparser import ConfigParser
+from coordinate import Coordinate
 import random
 import math
 import time
@@ -32,8 +33,8 @@ class BuildEnv:
         # Other settings
         self.nodeRad = 2
         self.level = 0
-        self.start_pos = None
-        self.finish_pos = None
+        self.start_pos: Coordinate | None = None
+        self.finish_pos: Coordinate | None = None
 
         self.edgeThickness = 1
 
@@ -48,11 +49,11 @@ class BuildEnv:
             match self.level:
                 case 0:
                     pygame.draw.circle(self.map, self.red, [x, y], self.nodeRad + 5, 0)
-                    self.start_pos = (x, y)
+                    self.start_pos = Coordinate(x, y)
                     self.level += 1
                 case 1:
                     pygame.draw.circle(self.map, self.green, [x, y], self.nodeRad + 5, 0)
-                    self.finish_pos = (x, y)
+                    self.finish_pos = Coordinate(x, y)
                     self.level = None
 
     def drawPath(self, path: list):
@@ -61,7 +62,11 @@ class BuildEnv:
 
 
 class RRTGraph:
-    def __init__(self, start, goal, MapDimensions, screen: pygame.Surface):
+    def __init__(self, start: Coordinate,
+                 goal: Coordinate,
+                 MapDimensions: Tuple[int, int],
+                 screen: pygame.Surface):
+
         x, y = start
         self.screen = screen
         self.start = start
