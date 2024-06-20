@@ -168,8 +168,8 @@ class RRTGraph:
 
             self.remove_node(nrand)
 
-            if abs(x - self.goal[0]) <= dmax and abs(y - self.goal[1]) <= dmax:
-                self.add_node(nrand, self.goal[0], self.goal[1])
+            if abs(x - self.goal.x) <= dmax and abs(y - self.goal.y) <= dmax:
+                self.add_node(nrand, self.goal.x, self.goal.y)
                 self.goalstate = nrand
                 self.goalFlag = True
             else:
