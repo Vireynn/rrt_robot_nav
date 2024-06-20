@@ -1,7 +1,7 @@
 import math
 import pygame
 import numpy as np
-from coordinate import Coordinate
+from tools import Coordinate, RGB
 from typing import Tuple
 from configparser import ConfigParser
 
@@ -61,10 +61,9 @@ class Robot:
 
 
 class LaserSensor:
-    def __init__(self, sensor_range: Tuple[int, float],
-                 map: pygame.Surface,
+    def __init__(self, map: pygame.Surface,
                  config: ConfigParser):
-        self.sensor_range = sensor_range
+        self.sensor_range = config.getint('Sensor', 'sensor_range')
         self.map = map
         self.width, self.height = pygame.display.get_surface().get_size()
 
@@ -73,9 +72,9 @@ class LaserSensor:
         self.sensor_heading = 0
 
         # Colors
-        self.BLACK = (0, 0, 0)
-        self.SPRING_GREEN = (0, 255, 100)
-        self.FROZEN_SKY = (0, 200, 255)
+        self.black = RGB.hex2rgb(config.get('Colors', 'black'))
+        self.obstacle_color = RGB.hex2rgb(config.get('Colors', 'obstacle_color'))
+        self.sensor_color = RGB.hex2rgb(config.get('Colors', 'sensor_color'))
 
         self.obstacles = []
         self.obs_radius = config.getint('Sensor', 'obstacle_radius')
@@ -104,14 +103,14 @@ class LaserSensor:
                 if 0 < x < self.width and 0 < y < self.height:
 
                     color = self.map.get_at((x, y))
-                    self.map.set_at((x, y), (0, 208, 255))
+                    self.map.set_at((x, y), self.sensor_color)
 
                     # obstacle color is black
-                    if (color[0], color[1], color[2]) == self.BLACK and \
-                            (color[0], color[1], color[2]) != self.SPRING_GREEN:
+                    if (color[0], color[1], color[2]) == self.black and \
+                            (color[0], color[1], color[2]) != self.obstacle_color:
                         self.obstacles.append((x, y))
                         break
 
     def draw_points(self):
         for coords in self.obstacles:
-            pygame.draw.circle(self.map, self.SPRING_GREEN, coords, self.obs_radius)
+            pygame.draw.circle(self.map, self.obstacle_color, coords, self.obs_radius)

@@ -1,6 +1,5 @@
-from typing import Tuple
 from configparser import ConfigParser
-from coordinate import Coordinate
+from tools import Coordinate, RGB
 import random
 import math
 import time
@@ -23,12 +22,11 @@ class BuildEnv:
         self.map.blit(self.external_map, (0, 0))
 
         # colors
-        self.black = (0, 0, 0)
-        self.grey = (70, 70, 70)
-        self.blue = (0, 0, 255)
-        self.green = (0, 255, 0)
-        self.red = (255, 0, 0)
-        self.white = (255, 255, 255)
+        self.black = RGB.hex2rgb(config.get('Colors', 'black'))
+        self.white = RGB.hex2rgb(config.get('Colors', 'white'))
+        self.red = RGB.hex2rgb(config.get('Colors', 'red'))
+        self.green = RGB.hex2rgb(config.get('Colors', 'green'))
+        self.blue = RGB.hex2rgb(config.get('Colors', 'blue'))
 
         # Other settings
         self.nodeRad = 2
@@ -64,8 +62,9 @@ class BuildEnv:
 class RRTGraph:
     def __init__(self, start: Coordinate,
                  goal: Coordinate,
-                 MapDimensions: Tuple[int, int],
-                 screen: pygame.Surface):
+                 MapDimensions: tuple[int, int],
+                 screen: pygame.Surface,
+                 config: ConfigParser):
 
         x, y = start
         self.screen = screen
@@ -76,13 +75,18 @@ class RRTGraph:
         self.x = []
         self.y = []
         self.parent = []
+
         # initialize the tree
         self.x.append(x)
         self.y.append(y)
         self.parent.append(0)
+
         # path
         self.goalstate = None
         self.path = []
+
+        # colors
+        self.obstacle_color = RGB.hex2rgb(config.get('Colors', 'obstacle_color'))
 
     def add_node(self, n, x, y) -> None:
         self.x.insert(n, x)
@@ -102,8 +106,8 @@ class RRTGraph:
         return len(self.x)
 
     def distance(self, n1: int, n2: int) -> float:
-        (x1, y1) = (self.x[n1], self.y[n1])
-        (x2, y2) = (self.x[n2], self.y[n2])
+        x1, y1 = (self.x[n1], self.y[n1])
+        x2, y2 = (self.x[n2], self.y[n2])
         px = (float(x1) - float(x2)) ** 2
         py = (float(y1) - float(y2)) ** 2
         return (px + py) ** 0.5
@@ -125,7 +129,7 @@ class RRTGraph:
     def isFree(self) -> bool:
         n = self.number_of_nodes() - 1
         x, y = (self.x[n], self.y[n])
-        if self.screen.get_at((x, y)) == (0, 255, 100, 255):
+        if self.screen.get_at((x, y)) == self.obstacle_color:
             self.remove_node(n)
             return False
         else:
@@ -136,13 +140,13 @@ class RRTGraph:
             u = i / 100
             x = int(x1 * u + x2 * (1 - u))
             y = int(y1 * u + y2 * (1 - u))
-            if self.screen.get_at((x, y)) == (0, 255, 100, 255):
+            if self.screen.get_at((x, y)) == self.obstacle_color:
                 return True
         return False
 
     def connect(self, n1: int, n2: int) -> bool:
-        (x1, y1) = (self.x[n1], self.y[n1])
-        (x2, y2) = (self.x[n2], self.y[n2])
+        x1, y1 = (self.x[n1], self.y[n1])
+        x2, y2 = (self.x[n2], self.y[n2])
         if self.crossObstacle(x1, x2, y1, y2):
             self.remove_node(n2)
             return False
@@ -171,7 +175,7 @@ class RRTGraph:
             else:
                 self.add_node(nrand, x, y)
 
-    def bias(self, ngoal: Tuple[int, int]):
+    def bias(self, ngoal: tuple[int, int]):
         n = self.number_of_nodes()
         self.add_node(n, ngoal[0], ngoal[1])
         nnear = self.nearest(n)
