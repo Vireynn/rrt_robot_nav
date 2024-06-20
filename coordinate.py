@@ -7,8 +7,8 @@ class Coordinate:
     y: int
 
     def distance(self, other):
-        px = self.x - other.x
-        py = self.y - other.y
+        px = (self.x - other.x) ** 2
+        py = (self.y - other.y) ** 2
         return (px + py) ** 0.5
 
     def __iter__(self):
