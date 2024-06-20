@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a90b96e-5486-4bcd-a19d-7465f0ab8935" name="Changes" comment="update: a robot class has been developed">
+    <list default="true" id="4a90b96e-5486-4bcd-a19d-7465f0ab8935" name="Changes" comment="update: added laser sensor object">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/equipment.py" beforeDir="false" afterPath="$PROJECT_DIR$/equipment.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -180,7 +181,14 @@
       <option name="project" value="LOCAL" />
       <updated>1718882545626</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="update: added laser sensor object">
+      <created>1718888008919</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1718888008919</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -202,6 +210,7 @@
     <MESSAGE value="update: added coordinate storage" />
     <MESSAGE value="update: added robot and environment images" />
     <MESSAGE value="update: a robot class has been developed" />
-    <option name="LAST_COMMIT_MESSAGE" value="update: a robot class has been developed" />
+    <MESSAGE value="update: added laser sensor object" />
+    <option name="LAST_COMMIT_MESSAGE" value="update: added laser sensor object" />
   </component>
 </project>

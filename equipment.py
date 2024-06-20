@@ -78,7 +78,7 @@ class LaserSensor:
         self.FROZEN_SKY = (0, 200, 255)
 
         self.obstacles = []
-        self.obs_radius = 20
+        self.obs_radius = config.getint('Sensor', 'obstacle_radius')
 
     def sense_obstacles(self, robot_pos: Coordinate, robot_angle: float):
         # Robot position
@@ -111,3 +111,7 @@ class LaserSensor:
                             (color[0], color[1], color[2]) != self.SPRING_GREEN:
                         self.obstacles.append((x, y))
                         break
+
+    def draw_points(self):
+        for coords in self.obstacles:
+            pygame.draw.circle(self.map, self.SPRING_GREEN, coords, self.obs_radius)
