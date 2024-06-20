@@ -24,4 +24,11 @@ class Coordinate:
 
         return s
 
-pos = Coordinate(14, 50)
+class RGB:
+    @staticmethod
+    def hex2rgb(_hex: str):
+        h = int(_hex, 16)
+        red = (h & 0xFF0000) >> 16
+        green = (h & 0xFF00) >> 8
+        blue = h & 0xFF
+        return red, green, blue
