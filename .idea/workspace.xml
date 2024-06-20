@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a90b96e-5486-4bcd-a19d-7465f0ab8935" name="Changes" comment="update: added robot and environment images">
-      <change afterPath="$PROJECT_DIR$/equipment.py" afterDir="false" />
+    <list default="true" id="4a90b96e-5486-4bcd-a19d-7465f0ab8935" name="Changes" comment="update: a robot class has been developed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coordinate.py" beforeDir="false" afterPath="$PROJECT_DIR$/coordinate.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gfx/environment.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/equipment.py" beforeDir="false" afterPath="$PROJECT_DIR$/equipment.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,7 +173,14 @@
       <option name="project" value="LOCAL" />
       <updated>1718833193266</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="update: a robot class has been developed">
+      <created>1718882545626</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1718882545626</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -196,6 +201,7 @@
     <MESSAGE value="init: project init" />
     <MESSAGE value="update: added coordinate storage" />
     <MESSAGE value="update: added robot and environment images" />
-    <option name="LAST_COMMIT_MESSAGE" value="update: added robot and environment images" />
+    <MESSAGE value="update: a robot class has been developed" />
+    <option name="LAST_COMMIT_MESSAGE" value="update: a robot class has been developed" />
   </component>
 </project>

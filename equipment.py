@@ -1,8 +1,9 @@
 import math
-
 import pygame
-
+import numpy as np
 from coordinate import Coordinate
+from typing import Tuple
+from configparser import ConfigParser
 
 class Robot:
     def __init__(self, pos: Coordinate, robot_img_path: str, width: float, map: pygame.Surface):
@@ -57,3 +58,56 @@ class Robot:
         self.rotated = pygame.transform.rotozoom(self.img, math.degrees(-self.theta), 1)
         self.rect = self.rotated.get_rect(center=(self.x, self.y))
         self.follow_path()
+
+
+class LaserSensor:
+    def __init__(self, sensor_range: Tuple[int, float],
+                 map: pygame.Surface,
+                 config: ConfigParser):
+        self.sensor_range = sensor_range
+        self.map = map
+        self.width, self.height = pygame.display.get_surface().get_size()
+
+        # Position
+        self.sensor_pos = Coordinate(0, 0)
+        self.sensor_heading = 0
+
+        # Colors
+        self.BLACK = (0, 0, 0)
+        self.SPRING_GREEN = (0, 255, 100)
+        self.FROZEN_SKY = (0, 200, 255)
+
+        self.obstacles = []
+        self.obs_radius = 20
+
+    def sense_obstacles(self, robot_pos: Coordinate, robot_angle: float):
+        # Robot position
+        x_r, y_r = robot_pos
+
+        # Sensor position
+        x_s = x_r + self.sensor_pos.x
+        y_s = y_r + self.sensor_pos.y
+        sensor_angle = robot_angle + self.sensor_heading
+
+        start_angle = sensor_angle - self.sensor_range[1]
+        finish_angle = sensor_angle + self.sensor_range[1]
+
+        for angle in np.linspace(start_angle, finish_angle, 30, False):
+            x_s2 = x_s + self.sensor_range[0] * math.cos(angle)
+            y_s2 = y_s - self.sensor_range[0] * math.sin(angle)
+
+            for i in range(0, 100):
+                u = i / 100
+                x = int(x_s2 * u + x_s * (1 - u))
+                y = int(y_s2 * u + y_s * (1 - u))
+
+                if 0 < x < self.width and 0 < y < self.height:
+
+                    color = self.map.get_at((x, y))
+                    self.map.set_at((x, y), (0, 208, 255))
+
+                    # obstacle color is black
+                    if (color[0], color[1], color[2]) == self.BLACK and \
+                            (color[0], color[1], color[2]) != self.SPRING_GREEN:
+                        self.obstacles.append((x, y))
+                        break
