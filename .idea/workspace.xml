@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a90b96e-5486-4bcd-a19d-7465f0ab8935" name="Changes" comment="fix: goal coordinates was fixed">
+    <list default="true" id="4a90b96e-5486-4bcd-a19d-7465f0ab8935" name="Changes" comment="add: requirement file">
+      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/equipment.py" beforeDir="false" afterPath="$PROJECT_DIR$/equipment.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -262,7 +264,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718916862762</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="add: requirement file">
+      <option name="closed" value="true" />
+      <created>1718918545736</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1718918545736</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -300,6 +310,7 @@
     <MESSAGE value="add: added function for drawing points-obstacle" />
     <MESSAGE value="update: config update with colors" />
     <MESSAGE value="fix: goal coordinates was fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: goal coordinates was fixed" />
+    <MESSAGE value="add: requirement file" />
+    <option name="LAST_COMMIT_MESSAGE" value="add: requirement file" />
   </component>
 </project>

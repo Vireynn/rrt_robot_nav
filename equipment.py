@@ -6,13 +6,13 @@ from typing import Tuple
 from configparser import ConfigParser
 
 class Robot:
-    def __init__(self, pos: Coordinate, robot_img_path: str, width: float, map: pygame.Surface):
+    def __init__(self, pos: Coordinate, robot_img_path: str, map: pygame.Surface):
         self.m2p = 3779.52  # метры в пиксели
         self.map = map
 
         self.x, self.y = pos
         self.path = None
-        self.w = width
+        self.w = 0.001 * self.m2p
         self.u = 0
         self.theta = 0
         self.a = 0.01 * self.m2p
