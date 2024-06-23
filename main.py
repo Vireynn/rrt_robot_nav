@@ -5,7 +5,7 @@ import pygame
 import math
 import time
 import sys
-from RRT import RRTGraph, BuildEnv
+from RRT import RRTGraph, BuildEnv, pathBuilder
 from equipment import Robot, LaserSensor
 from tools import Coordinate
 
@@ -58,3 +58,39 @@ def main():
                              goal=map.finish_pos,
                              screen=map.map,
                              config=config)
+            path = pathBuilder().build_path(graph, map)
+            robot.check_path(path)
+            running = True
+
+        while running:
+            dt = (pygame.time.get_ticks() - lasttime) / 1000
+            lasttime = pygame.time.get_ticks()
+
+            map.update_screen()
+            map.drawPath(path)
+            sensor.draw_points()
+            robot.move(dt)
+            robot.draw()
+            sensor.sense_obstacles(robot_pos=Coordinate(robot.x, robot.y),
+                                   robot_angle=-robot.theta)
+            if robot.waypoint <= step:
+                j = 0
+            else:
+                j = robot.waypoint - step
+
+            path_points = path[j:robot.waypoint]
+            index = len(path_points) - 1
+            while index >= 0:
+                x1, y1 = path_points[index]
+                x2, y2 = path_points[index - 1]
+                if graph.crossObstacle(x1, x2, y1, y2):
+                    running = False
+                    break
+                index -= 1
+
+            pygame.display.update()
+            pygame.display.flip()
+
+if __name__ == '__main__':
+    main()
+

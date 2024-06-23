@@ -18,7 +18,7 @@ class BuildEnv:
 
         self.external_map = pygame.image.load(self.map_path)
         pygame.display.set_caption(self.window_name)
-        self.map = pygame.display.set_mode((self.mapw, self.maph))
+        self.map = pygame.display.set_mode((self.maph, self.mapw))
         self.map.blit(self.external_map, (0, 0))
 
         # colors
