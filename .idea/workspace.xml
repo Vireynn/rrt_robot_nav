@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a90b96e-5486-4bcd-a19d-7465f0ab8935" name="Changes" comment="add: requirement file">
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    <list default="true" id="4a90b96e-5486-4bcd-a19d-7465f0ab8935" name="Changes" comment="update: main file update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/equipment.py" beforeDir="false" afterPath="$PROJECT_DIR$/equipment.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RRT.py" beforeDir="false" afterPath="$PROJECT_DIR$/RRT.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config.ini" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -272,7 +272,39 @@
       <option name="project" value="LOCAL" />
       <updated>1718918545736</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="add: main file was created">
+      <option name="closed" value="true" />
+      <created>1719175561679</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1719175561679</updated>
+    </task>
+    <task id="LOCAL-00012" summary="update: config sensor update">
+      <option name="closed" value="true" />
+      <created>1719176182115</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1719176182115</updated>
+    </task>
+    <task id="LOCAL-00013" summary="fix: equipment sensor fix">
+      <option name="closed" value="true" />
+      <created>1719176386573</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1719176386573</updated>
+    </task>
+    <task id="LOCAL-00014" summary="update: main file update">
+      <option name="closed" value="true" />
+      <created>1719177009249</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1719177009249</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -311,6 +343,10 @@
     <MESSAGE value="update: config update with colors" />
     <MESSAGE value="fix: goal coordinates was fixed" />
     <MESSAGE value="add: requirement file" />
-    <option name="LAST_COMMIT_MESSAGE" value="add: requirement file" />
+    <MESSAGE value="add: main file was created" />
+    <MESSAGE value="update: config sensor update" />
+    <MESSAGE value="fix: equipment sensor fix" />
+    <MESSAGE value="update: main file update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update: main file update" />
   </component>
 </project>

@@ -24,6 +24,7 @@ class BuildEnv:
         # colors
         self.black = RGB.hex2rgb(config.get('Colors', 'black'))
         self.white = RGB.hex2rgb(config.get('Colors', 'white'))
+        self.grey = RGB.hex2rgb(config.get('Colors', 'grey'))
         self.red = RGB.hex2rgb(config.get('Colors', 'red'))
         self.green = RGB.hex2rgb(config.get('Colors', 'green'))
         self.blue = RGB.hex2rgb(config.get('Colors', 'blue'))
@@ -175,9 +176,9 @@ class RRTGraph:
             else:
                 self.add_node(nrand, x, y)
 
-    def bias(self, ngoal: tuple[int, int]):
+    def bias(self, ngoal: Coordinate):
         n = self.number_of_nodes()
-        self.add_node(n, ngoal[0], ngoal[1])
+        self.add_node(n, ngoal.x, ngoal.y)
         nnear = self.nearest(n)
         self.step(nnear, n)
         self.connect(nnear, n)
@@ -235,5 +236,40 @@ class RRTGraph:
                 x = int(x2 * u + x1 * (1 - u))
                 y = int(y2 * u + y1 * (1 - u))
                 path.append((x, y))
+
+        return path
+
+class pathBuilder:
+    @staticmethod
+    def build_path(graph: RRTGraph, map: BuildEnv):
+        iteration = 0
+
+        t1 = time.time()
+        while not graph.path_to_goal():
+            time.sleep(0.001)
+            elapsed = time.time() - t1
+            t1 = time.time()
+            # raise exception if timeout
+            if elapsed > 10:
+                print('timeout re-initiating the calculations')
+
+            if iteration % 10 == 0:
+                X, Y, Parent = graph.bias(map.finish_pos)
+                pygame.draw.circle(map.map, map.grey, (X[-1], Y[-1]), map.nodeRad * 2, 0)
+                pygame.draw.line(map.map, map.blue, (X[-1], Y[-1]), (X[Parent[-1]], Y[Parent[-1]]),
+                                 map.edgeThickness)
+
+            else:
+                X, Y, Parent = graph.expand()
+                pygame.draw.circle(map.map, map.grey, (X[-1], Y[-1]), map.nodeRad * 2, 0)
+                pygame.draw.line(map.map, map.blue, (X[-1], Y[-1]), (X[Parent[-1]], Y[Parent[-1]]),
+                                 map.edgeThickness)
+
+            if iteration % 5 == 0:
+                pygame.display.update()
+            iteration += 1
+        map.drawPath(graph.getPathCoords())
+        path = graph.waypoints2path()
+        pygame.display.update()
 
         return path
