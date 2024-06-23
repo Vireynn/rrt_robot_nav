@@ -18,7 +18,7 @@ class BuildEnv:
 
         self.external_map = pygame.image.load(self.map_path)
         pygame.display.set_caption(self.window_name)
-        self.map = pygame.display.set_mode((self.maph, self.mapw))
+        self.map = pygame.display.set_mode((self.mapw, self.maph))
         self.map.blit(self.external_map, (0, 0))
 
         # colors
@@ -130,11 +130,14 @@ class RRTGraph:
     def isFree(self) -> bool:
         n = self.number_of_nodes() - 1
         x, y = (self.x[n], self.y[n])
-        if self.screen.get_at((x, y)) == self.obstacle_color:
-            self.remove_node(n)
-            return False
-        else:
-            return True
+        try:
+            if self.screen.get_at((x, y)) == self.obstacle_color:
+                self.remove_node(n)
+                return False
+            else:
+                return True
+        except IndexError:
+            print(x, y)
 
     def crossObstacle(self, x1, x2, y1, y2) -> bool:
         for i in range(0, 101):
