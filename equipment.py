@@ -2,17 +2,16 @@ import math
 import pygame
 import numpy as np
 from tools import Coordinate, RGB
-from typing import Tuple
 from configparser import ConfigParser
 
 class Robot:
-    def __init__(self, pos: Coordinate, robot_img_path: str, width: float, map: pygame.Surface):
+    def __init__(self, pos: Coordinate, robot_img_path: str, map: pygame.Surface):
         self.m2p = 3779.52  # метры в пиксели
         self.map = map
 
         self.x, self.y = pos
         self.path = None
-        self.w = width
+        self.w = 0.001 * self.m2p
         self.u = 0
         self.theta = 0
         self.a = 0.01 * self.m2p
@@ -64,6 +63,8 @@ class LaserSensor:
     def __init__(self, map: pygame.Surface,
                  config: ConfigParser):
         self.sensor_range = config.getint('Sensor', 'sensor_range')
+        self.sensor_angle = math.radians(config.getint('Sensor', 'sensor_angle'))
+        self.sensor_sampling = config.getint('Sensor', 'sensor_sampling')
         self.map = map
         self.width, self.height = pygame.display.get_surface().get_size()
 
@@ -88,12 +89,12 @@ class LaserSensor:
         y_s = y_r + self.sensor_pos.y
         sensor_angle = robot_angle + self.sensor_heading
 
-        start_angle = sensor_angle - self.sensor_range[1]
-        finish_angle = sensor_angle + self.sensor_range[1]
+        start_angle = sensor_angle - self.sensor_angle
+        finish_angle = sensor_angle + self.sensor_angle
 
-        for angle in np.linspace(start_angle, finish_angle, 30, False):
-            x_s2 = x_s + self.sensor_range[0] * math.cos(angle)
-            y_s2 = y_s - self.sensor_range[0] * math.sin(angle)
+        for angle in np.linspace(start_angle, finish_angle, self.sensor_sampling, False):
+            x_s2 = x_s + self.sensor_range * math.cos(angle)
+            y_s2 = y_s - self.sensor_range * math.sin(angle)
 
             for i in range(0, 100):
                 u = i / 100

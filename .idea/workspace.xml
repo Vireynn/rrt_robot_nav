@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4a90b96e-5486-4bcd-a19d-7465f0ab8935" name="Changes" comment="add: added function for drawing points-obstacle">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="4a90b96e-5486-4bcd-a19d-7465f0ab8935" name="Changes" comment="update: main file, RRT file, config file">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RRT.py" beforeDir="false" afterPath="$PROJECT_DIR$/RRT.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/equipment.py" beforeDir="false" afterPath="$PROJECT_DIR$/equipment.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,16 +53,17 @@
   "keyToString": {
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Python.coordinate.executor": "Run",
+    "Python.main.executor": "Run",
     "Python.tools (1).executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "develop",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "D:/Vireynn/Python/rrt_robot_nav",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
-  <component name="RunManager" selected="Python.tools (1)">
+  <component name="RunManager" selected="Python.main">
     <configuration name="RRT" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="rrt_robot_nav" />
       <option name="ENV_FILES" value="" />
@@ -87,28 +86,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="conf" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="rrt_robot_nav" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/conf.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="equipment" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="rrt_robot_nav" />
       <option name="ENV_FILES" value="" />
@@ -123,6 +100,28 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/equipment.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="rrt_robot_nav" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -177,11 +176,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.main" />
         <item itemvalue="Python.tools (1)" />
         <item itemvalue="Python.tools" />
         <item itemvalue="Python.RRT" />
         <item itemvalue="Python.equipment" />
-        <item itemvalue="Python.conf" />
       </list>
     </recent_temporary>
   </component>
@@ -250,7 +249,79 @@
       <option name="project" value="LOCAL" />
       <updated>1718888864106</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="update: config update with colors">
+      <option name="closed" value="true" />
+      <created>1718916031822</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1718916031822</updated>
+    </task>
+    <task id="LOCAL-00009" summary="fix: goal coordinates was fixed">
+      <option name="closed" value="true" />
+      <created>1718916862762</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1718916862762</updated>
+    </task>
+    <task id="LOCAL-00010" summary="add: requirement file">
+      <option name="closed" value="true" />
+      <created>1718918545736</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1718918545736</updated>
+    </task>
+    <task id="LOCAL-00011" summary="add: main file was created">
+      <option name="closed" value="true" />
+      <created>1719175561679</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1719175561679</updated>
+    </task>
+    <task id="LOCAL-00012" summary="update: config sensor update">
+      <option name="closed" value="true" />
+      <created>1719176182115</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1719176182115</updated>
+    </task>
+    <task id="LOCAL-00013" summary="fix: equipment sensor fix">
+      <option name="closed" value="true" />
+      <created>1719176386573</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1719176386573</updated>
+    </task>
+    <task id="LOCAL-00014" summary="update: main file update">
+      <option name="closed" value="true" />
+      <created>1719177009249</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1719177009249</updated>
+    </task>
+    <task id="LOCAL-00015" summary="add: path builder func was created">
+      <option name="closed" value="true" />
+      <created>1719177592978</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1719177592978</updated>
+    </task>
+    <task id="LOCAL-00016" summary="update: main file, RRT file, config file">
+      <option name="closed" value="true" />
+      <created>1719178528756</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1719178528756</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -258,7 +329,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/develop" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -274,6 +357,15 @@
     <MESSAGE value="update: a robot class has been developed" />
     <MESSAGE value="update: added laser sensor object" />
     <MESSAGE value="add: added function for drawing points-obstacle" />
-    <option name="LAST_COMMIT_MESSAGE" value="add: added function for drawing points-obstacle" />
+    <MESSAGE value="update: config update with colors" />
+    <MESSAGE value="fix: goal coordinates was fixed" />
+    <MESSAGE value="add: requirement file" />
+    <MESSAGE value="add: main file was created" />
+    <MESSAGE value="update: config sensor update" />
+    <MESSAGE value="fix: equipment sensor fix" />
+    <MESSAGE value="update: main file update" />
+    <MESSAGE value="add: path builder func was created" />
+    <MESSAGE value="update: main file, RRT file, config file" />
+    <option name="LAST_COMMIT_MESSAGE" value="update: main file, RRT file, config file" />
   </component>
 </project>
