@@ -62,7 +62,6 @@ class BuildEnv:
 class RRTGraph:
     def __init__(self, start: Coordinate,
                  goal: Coordinate,
-                 MapDimensions: tuple[int, int],
                  screen: pygame.Surface,
                  config: ConfigParser):
 
@@ -71,7 +70,8 @@ class RRTGraph:
         self.start = start
         self.goal = goal
         self.goalFlag = False
-        self.mapw, self.maph = MapDimensions
+        self.mapw, self.maph = (config.getint('Screen', 'width'),
+                                config.getint('Screen', 'height'))
         self.x = []
         self.y = []
         self.parent = []

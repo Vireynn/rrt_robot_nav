@@ -36,3 +36,25 @@ def main():
     robot.draw()
     pygame.display.update()
 
+    # Sensor
+    sensor = LaserSensor(map.map, config)
+    lasttime = pygame.time.get_ticks()
+    step = 15
+    running = False
+    path = None
+    t = 1
+    graph = None
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+
+        sensor.sense_obstacles(robot_pos=Coordinate(robot.x, robot.y),
+                               robot_angle=-robot.theta)
+        sensor.draw_points()
+        if not running:
+            graph = RRTGraph(start=Coordinate(robot.x, robot.y),
+                             goal=map.finish_pos,
+                             screen=map.map,
+                             config=config)
