@@ -2,8 +2,6 @@ import configparser
 
 import pygame
 
-import math
-import time
 import sys
 from RRT import RRTGraph, BuildEnv, pathBuilder
 from equipment import Robot, LaserSensor
@@ -41,8 +39,8 @@ def main():
     lasttime = pygame.time.get_ticks()
     step = 15
     running = False
+    finish = False
     path = None
-    t = 1
     graph = None
 
     while True:
@@ -50,11 +48,11 @@ def main():
             if event.type == pygame.QUIT:
                 sys.exit()
 
-        sensor.sense_obstacles(robot_pos=Coordinate(robot.x, robot.y),
+        sensor.sense_obstacles(robot_pos=robot.pos,
                                robot_angle=-robot.theta)
         sensor.draw_points()
         if not running:
-            graph = RRTGraph(start=Coordinate(robot.x, robot.y),
+            graph = RRTGraph(start=robot.pos,
                              goal=map.finish_pos,
                              screen=map.map,
                              config=config)
@@ -62,7 +60,7 @@ def main():
             robot.check_path(path)
             running = True
 
-        while running:
+        while running and not finish:
             dt = (pygame.time.get_ticks() - lasttime) / 1000
             lasttime = pygame.time.get_ticks()
 
@@ -71,7 +69,7 @@ def main():
             sensor.draw_points()
             robot.move(dt)
             robot.draw()
-            sensor.sense_obstacles(robot_pos=Coordinate(robot.x, robot.y),
+            sensor.sense_obstacles(robot_pos=robot.pos,
                                    robot_angle=-robot.theta)
             if robot.waypoint <= step:
                 j = 0

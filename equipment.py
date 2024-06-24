@@ -9,7 +9,7 @@ class Robot:
         self.m2p = 3779.52  # метры в пиксели
         self.map = map
 
-        self.x, self.y = pos
+        self.pos = pos
         self.path = None
         self.w = 0.001 * self.m2p
         self.u = 0
@@ -22,25 +22,25 @@ class Robot:
         self.img = pygame.image.load(robot_img_path)
         self.img = pygame.transform.scale(self.img, (60, 58))
         self.rotated = self.img
-        self.rect = self.rotated.get_rect(center=(self.x, self.y))
+        self.rect = self.rotated.get_rect(center=(self.pos.x, self.pos.y))
 
-    def draw(self):
+    def draw(self) -> None:
         self.map.blit(self.rotated, self.rect)
 
-    def check_path(self, path):
+    def check_path(self, path) -> None:
         if len(path):
             self.path = path
             self.waypoint = len(path) - 1
 
-    def dist(self, coord):
-        px = (coord[0] - self.x) ** 2
-        py = (coord[1] - self.y) ** 2
+    def dist(self, coord) -> float:
+        px = (coord[0] - self.pos.x) ** 2
+        py = (coord[1] - self.pos.y) ** 2
         return math.sqrt(px + py)
 
-    def follow_path(self):
+    def follow_path(self) -> None:
         target = self.path[self.waypoint]
-        delta_x = target[0] - self.x
-        delta_y = target[1] - self.y
+        delta_x = target[0] - self.pos.x
+        delta_y = target[1] - self.pos.y
         self.u = delta_x * math.cos(self.theta) + delta_y * math.sin(self.theta)
         self.w = (-1 / self.a) * math.sin(self.theta) * delta_x + (1 / self.a) * math.cos(self.theta) * delta_y
 
@@ -50,12 +50,12 @@ class Robot:
         if self.waypoint <= 0:
             self.waypoint = 0
 
-    def move(self, dt):
-        self.x += (self.u * math.cos(self.theta) - self.a * math.sin(self.theta) * self.w) * dt
-        self.y += (self.u * math.sin(self.theta) + self.a * math.cos(self.theta) * self.w) * dt
+    def move(self, dt) -> None:
+        self.pos.x += (self.u * math.cos(self.theta) - self.a * math.sin(self.theta) * self.w) * dt
+        self.pos.y += (self.u * math.sin(self.theta) + self.a * math.cos(self.theta) * self.w) * dt
         self.theta += self.w * dt
         self.rotated = pygame.transform.rotozoom(self.img, math.degrees(-self.theta), 1)
-        self.rect = self.rotated.get_rect(center=(self.x, self.y))
+        self.rect = self.rotated.get_rect(center=(self.pos.x, self.pos.y))
         self.follow_path()
 
 
